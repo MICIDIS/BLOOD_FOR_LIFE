@@ -1,5 +1,4 @@
-<!-- sheets-cors-fix-v2 -->
-
+// 2nd semester project "Blood for life "
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -580,9 +579,6 @@
                 <li><a href="#reports" class="nav-link"><i class="fas fa-chart-bar"></i> Reports</a></li>
             </ul>
         </nav>
-        <div class="auth-section">
-            <button id="login-btn" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
-            <button id="logout-btn" class="auth-btn secondary" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
             <span id="user-info" style="display: none;"></span>
         </div>
     </div>
@@ -814,61 +810,37 @@
         </div>
     </div>
 
-    <div class="modal" id="auth-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="auth-modal-title">Login</h3>
-                <button class="close-btn" id="close-auth-modal">&times;</button>
             </div>
-            <div id="auth-modal-body">
-                <form id="auth-form">
                     <div class="form-group">
-                        <label for="auth-email">Email *</label>
-                        <input type="email" id="auth-email" required>
                     </div>
                     <div class="form-group">
-                        <label for="auth-password">Password *</label>
-                        <input type="password" id="auth-password" required>
                     </div>
-                    <button type="submit" id="auth-submit-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
                     <button type="button" id="switch-to-signup" class="secondary">Don't have an account? Sign Up</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Firebase SDK -->
     <script type="module">
         // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, doc, getDocs, addDoc, updateDoc, deleteDoc, onSnapshot, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
             apiKey: "AIzaSyAd-Mzg4Bk1AV6t0Qtun1V1GQy3Qo84pUg",
-            authDomain: "blood-bank-management-8dd02.firebaseapp.com",
             projectId: "blood-bank-management-8dd02",
-            storageBucket: "blood-bank-management-8dd02.firebasestorage.app",
             messagingSenderId: "804598752105",
             appId: "1:804598752105:web:b12747d4217e3748b013f8",
             measurementId: "G-EBZG4BZKMN"
         };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
 
         // Initialize Firestore
         const db = getFirestore(app);
 
-        // Initialize Firebase Auth
-        const auth = getAuth(app);
 
         // Make globally available
         window.db = db;
-        window.auth = auth;
         window.collection = collection;
         window.doc = doc;
         window.getDocs = getDocs;
@@ -879,17 +851,13 @@
         window.query = query;
         window.where = where;
         window.orderBy = orderBy;
-        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
         window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
-        window.signOut = signOut;
-        window.onAuthStateChanged = onAuthStateChanged;
     </script>
 
     <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-// Firebase Firestore functions
 async function loadDonors() {
   try {
     const donorsCollection = collection(db, 'donors');
@@ -1877,7 +1845,6 @@ async function saveDonors(donors) {
                     ` : ''}
                     <div class="donor-detail">
                         <i class="fas fa-calendar-plus"></i>
-                        <span><strong>Registered:</strong> ${new Date(donor.createdAt).toLocaleDateString()}</span>
                     </div>
                 </div>
                 <div class="donor-actions" style="margin-top: 1.5rem;">
@@ -2037,69 +2004,31 @@ async function saveDonors(donors) {
             });
         }
 
-        // Authentication functionality
-        const loginBtn = document.getElementById('login-btn');
         const logoutBtn = document.getElementById('logout-btn');
         const userInfo = document.getElementById('user-info');
-        const authModal = document.getElementById('auth-modal');
-        const authModalTitle = document.getElementById('auth-modal-title');
-        const authForm = document.getElementById('auth-form');
-        const authSubmitBtn = document.getElementById('auth-submit-btn');
         const switchToSignup = document.getElementById('switch-to-signup');
-        const closeAuthModal = document.getElementById('close-auth-modal');
 
-        let isLoginMode = true;
 
-        // Open auth modal
-        loginBtn.addEventListener('click', () => {
-            authModal.classList.add('show');
-            authModalTitle.textContent = 'Login';
-            authSubmitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
             switchToSignup.textContent = "Don't have an account? Sign Up";
-            isLoginMode = true;
         });
 
-        // Close auth modal
-        closeAuthModal.addEventListener('click', () => {
-            authModal.classList.remove('show');
-            authForm.reset();
         });
 
-        // Switch between login and signup
         switchToSignup.addEventListener('click', () => {
-            isLoginMode = !isLoginMode;
-            if (isLoginMode) {
-                authModalTitle.textContent = 'Login';
-                authSubmitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
                 switchToSignup.textContent = "Don't have an account? Sign Up";
             } else {
-                authModalTitle.textContent = 'Sign Up';
-                authSubmitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';
-                switchToSignup.textContent = "Already have an account? Login";
             }
         });
 
-        // Handle auth form submission
-        authForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
 
             try {
-                if (isLoginMode) {
-                    // Login
-                    await signInWithEmailAndPassword(auth, email, password);
-                    showNotification('Login successful!', 'success');
                 } else {
                     // Sign up
-                    await createUserWithEmailAndPassword(auth, email, password);
                     showNotification('Account created successfully!', 'success');
                 }
-                authModal.classList.remove('show');
-                authForm.reset();
             } catch (error) {
-                console.error('Auth error:', error);
                 showNotification(error.message, 'error');
             }
         });
@@ -2107,7 +2036,6 @@ async function saveDonors(donors) {
         // Logout
         logoutBtn.addEventListener('click', async () => {
             try {
-                await signOut(auth);
                 showNotification('Logged out successfully!', 'success');
             } catch (error) {
                 console.error('Logout error:', error);
@@ -2115,28 +2043,20 @@ async function saveDonors(donors) {
             }
         });
 
-        // Auth state observer
-        onAuthStateChanged(auth, (user) => {
             if (user) {
                 // User is signed in
-                loginBtn.style.display = 'none';
                 logoutBtn.style.display = 'inline-block';
                 userInfo.style.display = 'inline-block';
                 userInfo.textContent = `Welcome, ${user.email}`;
             } else {
                 // User is signed out
-                loginBtn.style.display = 'inline-block';
                 logoutBtn.style.display = 'none';
                 userInfo.style.display = 'none';
                 userInfo.textContent = '';
             }
         });
 
-        // Close auth modal when clicking outside
         window.addEventListener('click', (e) => {
-            if (e.target === authModal) {
-                authModal.classList.remove('show');
-                authForm.reset();
             }
         });
 
@@ -2156,32 +2076,59 @@ async function saveDonors(donors) {
 
 <!-- ===== Google Sheets Storage Override (MINIMAL CHANGE) ===== -->
 <script>
+// Google Sheets API URL
 const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzrAx2Qu0pX1_wa0yqOWTq8ahuHU1S3_iUx5es-_DAIWpwmQDuFDZ-xUPnH5NtuEyo/exec";
 
-/* ===== READ DONORS ===== */
+// OVERRIDE ONLY STORAGE FUNCTIONS (do NOT touch UI / logic)
 async function loadDonors() {
   try {
     const res = await fetch(SHEET_API_URL);
-    const data = await res.json();
-    return data || [];
+    return await res.json();
+  } catch (e) {
+    console.error("Sheets load error:", e);
+    return [];
+  }
+}
+
+async function saveDonors(donors) {
+  try {
+    for (const donor of donors) {
+      await fetch(SHEET_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(donor)
+      });
+    }
+  } catch (e) {
+    console.error("Sheets save error:", e);
+  }
+}
+</script>
+<!-- ===== END Google Sheets Override ===== -->
+
+</body>
+</html>
+// ...existing code...
+
+
+<!-- Google Sheets Backend (No Login, No Firebase) -->
+<script>
+const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzrAx2Qu0pX1_wa0yqOWTq8ahuHU1S3_iUx5es-_DAIWpwmQDuFDZ-xUPnH5NtuEyo/exec";
+
+async function loadDonors() {
+  try {
+    const res = await fetch(SHEET_API_URL);
+    return await res.json();
   } catch (e) {
     console.error("Load error:", e);
     return [];
   }
 }
 
-/* ===== SAVE DONORS ===== */
-async function saveDonors(donors) {
-  for (const d of donors) {
-    await fetch(SHEET_API_URL, {
-      method: "POST",
-      body: JSON.stringify(d)
-    });
-  }
+async function saveDonor(donor) {
+  await fetch(SHEET_API_URL, {
+    method: "POST",
+    body: JSON.stringify(donor)
+  });
 }
 </script>
-
-<!-- ===== END Google Sheets Override ===== -->
-
-</body>
-</html>
