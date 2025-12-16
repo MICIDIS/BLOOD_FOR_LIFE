@@ -3,412 +3,686 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood For Life - Save Lives, Donate Blood</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood for life </title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css">
     <style>
         :root {
-            --primary: #d32f2f;
-            --primary-dark: #b71c1c;
-            --secondary: #f5f5f5;
-            --text: #333;
-            --text-light: #757575;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --danger: #f44336;
+            --primary: #dc2626;
+            --primary-dark: #b91c1c;
+            --primary-light: #fecaca;
+            --secondary: #f8fafc;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --text-muted: #9ca3af;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
             --white: #ffffff;
-            --shadow: 0 2px 10px rgba(0,0,0,0.1);
-            --shadow-hover: 0 5px 15px rgba(0,0,0,0.2);
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --transition: all 0.2s ease-in-out;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f9f9f9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #fef2f2 50%, #ffffff 100%);
+            min-height: 100vh;
             color: var(--text);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            padding: 1.5rem 0;
-            box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: var(--shadow-sm);
         }
-        
+
         .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 2rem;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            text-decoration: none;
         }
-        
+
         .logo i {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
         }
-        
-        .logo h1 {
-            font-size: 1.8rem;
+
+        .logo-text h1 {
+            font-size: 1.5rem;
             font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.125rem;
         }
-        
+
+        .logo-text p {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 0.5rem;
+            align-items: center;
         }
-        
+
         nav a {
-            color: var(--white);
+            color: var(--text);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
             padding: 0.5rem 1rem;
-            border-radius: 4px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-size: 0.875rem;
         }
-        
+
         nav a:hover, nav a.active {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: var(--gray-100);
+            color: var(--primary);
         }
-        
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .stat-card {
-            background: var(--white);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .auth-section {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+
+        .auth-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray-300);
+            background: var(--white);
+            color: var(--text);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
         }
-        
+
+        .auth-btn:hover {
+            background: var(--gray-50);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .auth-btn.secondary {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .auth-btn.secondary:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            background: var(--gray-50);
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--text);
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+
+        .main-content {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            min-height: calc(100vh - 200px);
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            margin: 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
         .stat-icon {
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            flex-shrink: 0;
         }
-        
+
         .stat-icon.donors {
-            background-color: rgba(211, 47, 47, 0.1);
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
         }
-        
+
         .stat-icon.eligible {
-            background-color: rgba(76, 175, 80, 0.1);
-            color: var(--success);
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: var(--white);
+            box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
         }
-        
+
         .stat-icon.blood-groups {
-            background-color: rgba(33, 150, 243, 0.1);
-            color: #2196f3;
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
+            color: var(--white);
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
         }
-        
+
         .stat-icon.recent {
-            background-color: rgba(255, 152, 0, 0.1);
-            color: var(--warning);
+            background: linear-gradient(135deg, var(--warning), #d97706);
+            color: var(--white);
+            box-shadow: 0 8px 16px rgba(245, 158, 11, 0.3);
         }
-        
+
         .stat-info h3 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text), var(--text-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
+
         .stat-info p {
             color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            font-weight: 500;
         }
-        
+
+        /* Tabs */
         .tabs {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #e0e0e0;
+            gap: 0.25rem;
+            padding: 0 2rem;
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
-        
+
         .tab {
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 1.5rem;
             background: none;
             border: none;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-light);
             border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             white-space: nowrap;
+            font-size: 0.875rem;
+            position: relative;
         }
-        
+
         .tab:hover {
             color: var(--primary);
+            background: rgba(220, 38, 38, 0.05);
         }
-        
+
         .tab.active {
             color: var(--primary);
             border-bottom-color: var(--primary);
+            background: var(--white);
         }
-        
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px 2px 0 0;
+        }
+
         .tab-content {
             display: none;
+            padding: 2rem;
         }
-        
+
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: slideInUp 0.3s ease-out;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
+        /* Sections */
         section {
             background: var(--white);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
+            border-radius: var(--border-radius-lg);
             margin-bottom: 2rem;
+            overflow: hidden;
         }
-        
+
         h2 {
-            color: var(--primary);
+            color: var(--text);
             margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
-        
+
         h2 i {
-            font-size: 1.2rem;
+            color: var(--primary);
+            font-size: 1.5rem;
         }
-        
+
+        /* Forms */
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
-        
+
         .form-group {
             display: flex;
             flex-direction: column;
         }
-        
+
         .form-group.full-width {
             grid-column: 1 / -1;
         }
-        
+
         label {
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--text);
+            font-size: 0.875rem;
         }
-        
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            z-index: 1;
+        }
+
         input, select, textarea {
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius);
             font-family: inherit;
-            transition: border-color 0.3s ease;
+            font-size: 0.875rem;
+            transition: var(--transition);
+            background: var(--white);
+            width: 100%;
         }
-        
+
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
         }
-        
-        button {
-            padding: 0.75rem 1.5rem;
-            background: var(--primary);
+
+        input.has-icon {
+            padding-left: 2.5rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-error {
+            color: var(--danger);
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: var(--white);
             border: none;
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            text-decoration: none;
+            box-shadow: var(--shadow);
         }
-        
-        button:hover {
-            background: var(--primary-dark);
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--primary-dark), #991b1b);
         }
-        
-        button.secondary {
-            background: var(--secondary);
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn.secondary {
+            background: var(--gray-100);
             color: var(--text);
+            box-shadow: none;
         }
-        
-        button.secondary:hover {
-            background: #e0e0e0;
+
+        .btn.secondary:hover {
+            background: var(--gray-200);
+            box-shadow: var(--shadow);
         }
-        
+
+        .btn.success {
+            background: linear-gradient(135deg, var(--success), #059669);
+        }
+
+        .btn.danger {
+            background: linear-gradient(135deg, var(--danger), #dc2626);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Search and Filters */
         .search-container {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
+            align-items: end;
         }
-        
-        .search-container input, .search-container select {
+
+        .search-container .form-group {
             flex: 1;
             min-width: 200px;
         }
-        
+
+        /* Donor Cards */
         .donor-card {
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 1.5rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
             margin-bottom: 1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
+            box-shadow: var(--shadow-sm);
         }
-        
+
         .donor-card:hover {
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
             transform: translateY(-2px);
+            border-color: var(--primary-light);
         }
-        
+
         .donor-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
         }
-        
+
         .donor-name {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
         }
-        
+
         .blood-type {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: var(--white);
-            padding: 0.25rem 0.75rem;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-sm);
         }
-        
+
         .donor-details {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
-            margin-bottom: 1rem;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
-        
+
         .donor-detail {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            background: var(--gray-50);
+            border-radius: var(--border-radius);
         }
-        
+
         .donor-detail i {
-            color: var(--text-light);
+            color: var(--primary);
             width: 20px;
+            font-size: 1rem;
         }
-        
+
+        .donor-detail span {
+            font-size: 0.875rem;
+            color: var(--text);
+        }
+
         .countdown {
-            font-weight: 500;
-            padding: 4px 8px;
-            border-radius: 4px;
-            background-color: rgba(76, 175, 80, 0.1);
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+
+        .countdown.available {
+            background: var(--success-light);
             color: var(--success);
         }
-        
+
         .countdown.not-available {
-            background-color: rgba(255, 152, 0, 0.1);
+            background: var(--warning-light);
             color: var(--warning);
         }
-        
-        button[disabled] {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        
+
         .donor-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
         }
-        
-        .donor-actions button {
+
+        .donor-actions .btn {
             padding: 0.5rem 1rem;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
-        
+
+        /* Notifications */
         .notification {
             position: fixed;
-            top: 80px;
+            top: 100px;
             right: 20px;
             padding: 1rem 1.5rem;
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             color: var(--white);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-xl);
             z-index: 1000;
             display: flex;
             align-items: center;
             gap: 0.75rem;
             transform: translateX(120%);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 400px;
         }
-        
+
         .notification.show {
             transform: translateX(0);
         }
-        
+
         .notification.success {
-            background-color: var(--success);
+            background: linear-gradient(135deg, var(--success), #059669);
         }
-        
+
         .notification.error {
-            background-color: var(--danger);
+            background: linear-gradient(135deg, var(--danger), #dc2626);
         }
-        
+
         .notification.warning {
-            background-color: var(--warning);
+            background: linear-gradient(135deg, var(--warning), #d97706);
         }
-        
+
+        .notification.info {
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
+        }
+
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -416,101 +690,280 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            animation: fadeIn 0.2s ease-out;
         }
-        
+
         .modal.show {
             display: flex;
         }
-        
+
         .modal-content {
             background: var(--white);
-            border-radius: 8px;
-            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            padding: 0;
             max-width: 500px;
             width: 90%;
             max-height: 90vh;
-            overflow-y: auto;
-            animation: slideIn 0.3s ease;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            animation: slideInScale 0.3s ease-out;
+            border: 1px solid var(--gray-200);
         }
-        
-        @keyframes slideIn {
+
+        @keyframes slideInScale {
             from {
-                transform: translateY(-50px);
                 opacity: 0;
+                transform: scale(0.9) translateY(-20px);
             }
             to {
-                transform: translateY(0);
                 opacity: 1;
+                transform: scale(1) translateY(0);
             }
         }
-        
+
         .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid var(--gray-200);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
         }
-        
+
         .modal-header h3 {
-            color: var(--primary);
+            color: var(--text);
             font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
         }
-        
+
         .close-btn {
             background: none;
             border: none;
             font-size: 1.5rem;
             color: var(--text-light);
             cursor: pointer;
-            padding: 0;
-            width: 30px;
-            height: 30px;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         .close-btn:hover {
+            background: var(--gray-100);
             color: var(--text);
         }
-        
+
+        .modal-body {
+            padding: 2rem;
+            max-height: calc(90vh - 140px);
+            overflow-y: auto;
+        }
+
+        /* Auth Modal Specific Styles */
+        .auth-modal .modal-content {
+            max-width: 400px;
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+        }
+
+        .auth-form input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        .auth-form .btn {
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .auth-switch {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .auth-switch button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .social-login {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .social-login p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .social-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .social-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .social-btn.google {
+            border-color: #4285f4;
+            color: #4285f4;
+        }
+
+        .social-btn.google:hover {
+            background: #f8f9fa;
+        }
+
+        .social-btn.facebook {
+            border-color: #1877f2;
+            color: #1877f2;
+        }
+
+        .social-btn.facebook:hover {
+            background: #f0f2f5;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--gray-200);
+        }
+
+        .auth-divider span {
+            padding: 0 1rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            background: var(--white);
+        }
+
+        .password-strength {
+            margin-top: 0.5rem;
+            height: 4px;
+            background: var(--gray-200);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .password-strength-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .password-strength-fill.weak {
+            background: var(--danger);
+            width: 33%;
+        }
+
+        .password-strength-fill.medium {
+            background: var(--warning);
+            width: 66%;
+        }
+
+        .password-strength-fill.strong {
+            background: var(--success);
+            width: 100%;
+        }
+
+        /* Pagination */
         .pagination {
             display: flex;
             justify-content: center;
             gap: 0.5rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
+            align-items: center;
         }
-        
+
         .page-btn {
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #ddd;
+            border: 2px solid var(--gray-200);
             background: var(--white);
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            color: var(--text);
+            font-weight: 500;
         }
-        
+
         .page-btn:hover, .page-btn.active {
             background: var(--primary);
             color: var(--white);
             border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
         }
-        
+
+        /* Charts */
         .chart-container {
-            height: 300px;
-            margin-top: 1.5rem;
+            height: 400px;
+            margin-top: 2rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
         }
-        
+
+        /* Loading */
         .loader {
-            border: 4px solid #f3f3f3;
+            border: 4px solid var(--gray-200);
             border-top: 4px solid var(--primary);
             border-radius: 50%;
             width: 40px;
@@ -518,76 +971,238 @@
             animation: spin 1s linear infinite;
             margin: 2rem auto;
         }
-        
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
+
+        /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 2rem;
+            padding: 4rem 2rem;
             color: var(--text-light);
         }
-        
+
         .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #ddd;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray-300);
         }
-        
+
+        .empty-state h3 {
+            font-size: 1.25rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            font-size: 0.875rem;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                padding: 1.5rem;
+            }
+
+            .tab-content {
+                padding: 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 gap: 1rem;
             }
-            
+
             nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
+
             .dashboard {
                 grid-template-columns: 1fr;
+                padding: 1rem;
             }
-            
+
             .form-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .donor-details {
                 grid-template-columns: 1fr;
             }
+
+            .search-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-container .form-group {
+                min-width: auto;
+            }
+
+            .donor-actions {
+                flex-direction: column;
+            }
+
+            .donor-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .tabs {
+                padding: 0 1rem;
+            }
+
+            .tab {
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .modal-content {
+                margin: 1rem;
+                width: calc(100% - 2rem);
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
         }
+
+        @media (max-width: 480px) {
+            .stat-card {
+                padding: 1.5rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .stat-info h3 {
+                font-size: 2rem;
+            }
+
+            .stat-info p {
+                font-size: 0.875rem;
+            }
+
+            .donor-card {
+                padding: 1.5rem;
+            }
+
+            .donor-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .donor-name {
+                font-size: 1.125rem;
+            }
+
+            .notification {
+                left: 1rem;
+                right: 1rem;
+                max-width: none;
+            }
+        }
+        /* ================================
+       RED ACTION BUTTONS
+     ================================ */
+      .action-btn {
+        background-color: #dc2626;
+         color: #ffffff;
+         border: none;
+        border-radius: 6px;
+         padding: 6px 12px;
+         font-size: 13px;
+         cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+}
+
+.action-btn:hover {
+  background-color: #b91c1c;
+}
+
     </style>
+
+<style>
+/* ===============================
+   RED ONLY FOR SMALL ACTION BUTTONS
+   =============================== */
+.donor-actions button,
+.search-container button,
+.filters button,
+.reports-container button {
+  background: #dc2626;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.donor-actions button:hover,
+.search-container button:hover,
+.filters button:hover,
+.reports-container button:hover {
+  background: #b91c1c;
+}
+
+/* ===============================
+   KEEP TOP NAV BUTTONS UNCHANGED
+   =============================== */
+.sub-nav button,
+.dashboard-tabs button,
+.menu-tabs button {
+  background: inherit !important;
+  color: inherit !important;
+}
+</style>
+
 </head>
+<html lang="en">
 <body>
     <header>
-    <div class="header-content">
-        <div class="logo">
-            <i class="fas fa-tint"></i>
-            <h1>Blood For Life  </h1>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-text">
+                        <h1>Blood For Life</h1>
+                        <p>Save Lives, Donate Blood</p>
+                    </div>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#dashboard-section" class="nav-link active"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="#all-donors" class="nav-link"><i class="fas fa-users"></i> Donors</a></li>
+                        <li><a href="#search-donor" class="nav-link"><i class="fas fa-search"></i> Search</a></li>
+                        <li><a href="#reports" class="nav-link"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-section">
+                    <button id="login-btn" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    <button id="logout-btn" class="auth-btn secondary" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    <div id="user-profile" class="user-profile" style="display: none;">
+                        <div class="user-avatar">A</div>
+                        <div class="user-info">
+                            <div class="user-name">Admin</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <!-- Dashboard scrolls to the stats section -->
-                <li><a href="#dashboard-section" class="nav-link active"><i class="fas fa-home"></i> Dashboard</a></li>
-                <!-- These map to your tab data-tab values -->
-                <li><a href="#all-donors" class="nav-link"><i class="fas fa-users"></i> Donors</a></li>
-                <li><a href="#search-donor" class="nav-link"><i class="fas fa-search"></i> Search</a></li>
-                <li><a href="#reports" class="nav-link"><i class="fas fa-chart-bar"></i> Reports</a></li>
-            </ul>
-        </nav>
-        <div class="auth-section">
-            <button id="login-btn" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
-            <button id="logout-btn" class="auth-btn secondary" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            <span id="user-info" style="display: none;"></span>
-        </div>
-    </div>
-</header>
+    </header>
 
     <main>
-        <div class="dashboard" id="dashboard-section">
+        <div class="container">
+            <div class="main-content">
+                <div class="dashboard" id="dashboard-section">
             <div class="stat-card">
                 <div class="stat-icon donors">
                     <i class="fas fa-users"></i>
@@ -717,9 +1332,9 @@
                         <option value="date">Sort by Last Donation</option>
                         <option value="blood-group">Sort by Blood Group</option>
                     </select>
-                    <button id="filter-btn"><i class="fas fa-filter"></i> Apply Filters</button>
-                    <button id="reset-filter-btn" class="secondary"><i class="fas fa-undo"></i> Reset</button>
-                    <button id="export-btn"><i class="fas fa-download"></i> Export</button>
+                    <button id="filter-btn" class="action-btn"></i> Apply Filters</button>
+                    <button id="reset-filter-btn" class="action-btn"></i> Reset</button>
+                    <button id="export-btn" class="action-btn"></i> Export</button>
                 </div>
                 <div id="donor-list">
                     <div class="loader"></div>
@@ -837,28 +1452,60 @@
 
 
 
-    <!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        
+    // Google Sheets functions
+    const API_URL = "https://script.google.com/macros/s/AKfycbzrAx2Qu0pX1_wa0yqOWTq8ahuHU1S3_iUx5es-_DAIWpwmQDuFDZ-xUPnH5NtuEyo/exec";
 
-<script>
-// Google Sheets functions
-const API_URL = "https://script.google.com/macros/s/AKfycbzrAx2Qu0pX1_wa0yqOWTq8ahuHU1S3_iUx5es-_DAIWpwmQDuFDZ-xUPnH5NtuEyo/exec";
+    async function loadDonors() {
+        try {
+            const res = await fetch(API_URL);
+            if (!res.ok) {
+                console.warn('Google Sheets load returned non-OK status', res.status);
+                return [];
+            }
+            const data = await res.json().catch(() => []);
+            console.log("✅ Donors Loaded from Google Sheets:", data);
+            return Array.isArray(data) ? data : [];
+        } catch (err) {
+            console.error("Error loading donors from Google Sheets:", err);
+            return [];
+        }
+    }
 
-async function loadDonors() {
-  const res = await fetch(API_URL);
-  const data = await res.json();
-  console.log("✅ Donors Loaded from Google Sheets:", data);
-  return data;
-}
+      async function saveDonorToSheet(donor) {
+       try {
+          const formData = new URLSearchParams(donor);
 
-async function saveDonorToSheet(donor) {
-  await fetch(API_URL, {
-    method: "POST",
-    body: JSON.stringify(donor)   // ⚠️ NO headers
-  });
-}
+          const res = await fetch(API_URL, {
+              method: "POST",
+             body: formData
+         });
 
-</script>
+           const data = await res.json();
+           return data;
+          } catch (err) {
+        console.error("Save error:", err);
+         return { success: false };
+        }
+    }
+      async function deleteDonorFromSheet(id) {
+       try {
+       const ADMIN_KEY = "ADMIN_DELETE_2025_ONLY"; // SAME as Apps Script
+
+const res = await fetch(
+  `${API_URL}?action=delete&id=${id}&key=${ADMIN_KEY}
+`
+);
+
+       const data = await res.json();
+        return data.success;
+         } catch (err) {
+       console.error("Delete error:", err);
+          return false;
+         }
+   }
+    </script>
 
 
 
@@ -953,11 +1600,31 @@ async function saveDonorToSheet(donor) {
                             </div>
                         </div>
                         <div class="donor-actions">
-                            <button onclick="viewDonorDetails('${this.id}')"><i class="fas fa-eye"></i> View</button>
-                            <button onclick="updateDonation('${this.id}')"><i class="fas fa-sync"></i> Update Donation</button>
-                            <button onclick="editDonor('${this.id}')" class="secondary"><i class="fas fa-edit"></i> Edit</button>
-                            <button onclick="deleteDonor('${this.id}')" class="secondary"><i class="fas fa-trash"></i> Delete</button>
-                        </div>
+
+  <button class="action-btn"
+          onclick="viewDonorDetails('${this.id}')">
+    <i class="fas fa-eye"></i> View
+  </button>
+
+  <button class="action-btn"
+          onclick="updateDonation('${this.id}')">
+    <i class="fas fa-sync"></i> Update Donation
+  </button>
+
+  <button class="action-btn"
+          onclick="editDonor('${this.id}')">
+    <i class="fas fa-edit"></i> Edit
+  </button>
+
+  ${isAdminLoggedIn ? `
+    <button class="action-btn"
+            onclick="deleteDonor('${this.id}')">
+      <i class="fas fa-trash"></i> Delete
+    </button>
+  ` : ''}
+
+</div>
+
                     </div>
                 `;
             }
@@ -1025,8 +1692,17 @@ async function saveDonorToSheet(donor) {
                     donorData.medicalConditions
                 );
                 
-                this.donors.push(donor);
-                await saveDonorToSheet(donor.toPlainObject());
+                const saved = await saveDonorToSheet(donor.toPlainObject());
+                 if (!saved.success) {
+                 return { success: false, message: "Failed to save donor" };
+               }
+               this.donors.push(donor);
+
+                if (!saved || !saved.success) {
+                    // remove the donor we optimistically added
+                    this.donors = this.donors.filter(d => d.id !== donor.id);
+                    return { success: false, message: "Failed to save donor to remote backend. Please try again." };
+                }
                 return { success: true, message: "Donor added successfully!" };
             }
 
@@ -1266,6 +1942,8 @@ async function saveDonorToSheet(donor) {
         const bank = new BloodBank();
         let currentChart = null;
         let editDonorId = null;
+        let isAdminLoggedIn = false;
+
 
         // DOM Elements
         const tabs = document.querySelectorAll('.tab');
@@ -1878,31 +2556,28 @@ async function saveDonorToSheet(donor) {
             }
         }
 
-        // Delete donor
-        async function deleteDonor(donorId) {
-            if (!confirm('Are you sure you want to delete this donor?')) {
-                return;
-            }
-            
-            const result = await bank.deleteDonor(donorId);
-            
-            if (result.success) {
-                showNotification(result.message, 'success');
-                
-                // Refresh current view
-                const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
-                if (activeTab === 'all-donors') {
-                    loadAllDonors();
-                } else if (activeTab === 'eligibility') {
-                    document.getElementById('check-eligible-btn').click();
-                }
-                
-                // Close modal if open
-                modal.classList.remove('show');
-            } else {
-                showNotification(result.message, 'error');
-            }
-        }
+async function deleteDonor(id) {
+
+    if (!isAdminLoggedIn) {
+        showNotification("Only admin can delete donors", "error");
+        return;
+    }
+
+    if (!confirm("Are you sure you want to delete this donor?")) return;
+
+    const success = await deleteDonorFromSheet(id);
+
+    if (success) {
+        bank.donors = bank.donors.filter(d => d.id !== id);
+        bank.filteredDonors = bank.filteredDonors.filter(d => d.id !== id);
+        loadAllDonors();
+        showNotification("Donor deleted successfully", "success");
+    } else {
+        showNotification("Delete failed", "error");
+    }
+}
+
+
 
         // Contact donor
         function contactDonor(donorId) {
@@ -1980,7 +2655,29 @@ async function saveDonorToSheet(donor) {
         const userInfo = document.getElementById('user-info');
         const authModal = document.getElementById('auth-modal');
         const authModalTitle = document.getElementById('auth-modal-title');
-        const authForm = document.getElementById('auth-form');
+        const authForm = document.getElementById('auth-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById('auth-email').value;
+    const password = document.getElementById('auth-password').value;
+
+    // 🔐 HARDCODED ADMIN
+    if (email === "admin@gmail.com" && password === "admin123") {
+        isAdminLoggedIn = true;
+
+        document.getElementById('login-btn').style.display = "none";
+        document.getElementById('logout-btn').style.display = "inline-flex";
+        document.getElementById('user-profile').style.display = "flex";
+
+        document.getElementById('auth-modal').classList.remove('show');
+        showNotification("Admin logged in", "success");
+
+        loadAllDonors();
+    } else {
+        showNotification("Invalid admin credentials", "error");
+    }
+});
+
         const authSubmitBtn = document.getElementById('auth-submit-btn');
         const switchToSignup = document.getElementById('switch-to-signup');
         const closeAuthModal = document.getElementById('close-auth-modal');
@@ -2038,8 +2735,12 @@ async function saveDonorToSheet(donor) {
                 // Simulate user login state
                 loginBtn.style.display = 'none';
                 logoutBtn.style.display = 'inline-block';
-                userInfo.style.display = 'inline-block';
-                userInfo.textContent = `Welcome, ${email}`;
+                const userProfile = document.getElementById('user-profile');
+                userProfile.style.display = 'flex';
+                const userName = userProfile.querySelector('.user-name');
+                const userAvatar = userProfile.querySelector('.user-avatar');
+                userName.textContent = email.split('@')[0]; // Use part before @ as name
+                userAvatar.textContent = email.charAt(0).toUpperCase(); // First letter as avatar
             } else {
                 showNotification('Please fill in all fields', 'error');
             }
@@ -2053,8 +2754,17 @@ async function saveDonorToSheet(donor) {
             // Reset to logged out state
             loginBtn.style.display = 'inline-block';
             logoutBtn.style.display = 'none';
-            userInfo.style.display = 'none';
-            userInfo.textContent = '';
+            const userProfile = document.getElementById('user-profile');
+            userProfile.style.display = 'none';
+        });
+
+        // Social login buttons
+        document.querySelector('.social-btn.google').addEventListener('click', () => {
+            showNotification('Google login integration coming soon!', 'info');
+        });
+
+        document.querySelector('.social-btn.facebook').addEventListener('click', () => {
+            showNotification('Facebook login integration coming soon!', 'info');
         });
 
         // Close auth modal when clicking outside
